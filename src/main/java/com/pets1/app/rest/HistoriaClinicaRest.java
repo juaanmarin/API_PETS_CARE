@@ -34,7 +34,7 @@ public class HistoriaClinicaRest {
 	}
 	
 	@GetMapping("/historiaClinica/{codigo}")
-	public ResponseEntity<Optional<HistoriaClinicaVo>> buscarHistoriaClinicaID(@PathVariable Long codigo){
+	public ResponseEntity<Optional<HistoriaClinicaVo>> buscarHistoriaClinicaId(@PathVariable Long codigo){
 		Optional<HistoriaClinicaVo> HistoriaClinicaId=historiaClinicaService.buscarHistoriaClinicaId(codigo);
 		return ResponseEntity.ok().body(HistoriaClinicaId);
 	}
@@ -52,7 +52,7 @@ public class HistoriaClinicaRest {
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
 	}
 	
-	@PutMapping("/historiaClinica/{nit}")
+	@PutMapping("/historiaClinica/{codigo}")
 	public ResponseEntity<?> actualizarHistoriaClinica(@PathVariable Long codigo, @RequestBody HistoriaClinicaVo historiaClinicaVo)throws URISyntaxException{
 		Optional<HistoriaClinicaVo> historiaClinica=historiaClinicaService.buscarHistoriaClinicaId(codigo);
 		Map<String, Object> response=new HashMap<>();
@@ -69,7 +69,7 @@ public class HistoriaClinicaRest {
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
 	}
 	
-	@DeleteMapping("/historiaClinica/{nit}")
+	@DeleteMapping("/historiaClinica/{codigo}")
 	public ResponseEntity<Void> eliminarHistoriaClinica(@PathVariable Long codigo){
 		historiaClinicaService.eliminarHistoriaClinica(codigo);
 		return ResponseEntity.noContent().build();

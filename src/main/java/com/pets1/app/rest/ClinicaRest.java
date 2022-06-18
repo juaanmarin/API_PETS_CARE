@@ -34,7 +34,7 @@ public class ClinicaRest {
 	}
 	
 	@GetMapping("/clinica/{nit}")
-	public ResponseEntity<Optional<ClinicaVo>> buscarClinicaID(@PathVariable Long nit){
+	public ResponseEntity<Optional<ClinicaVo>> buscarClinicaId(@PathVariable Long nit){
 		Optional<ClinicaVo> clinicaId=clinicaService.buscarClincaId(nit);
 		return ResponseEntity.ok().body(clinicaId);
 	}

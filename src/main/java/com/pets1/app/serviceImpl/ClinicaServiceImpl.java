@@ -3,9 +3,10 @@ package com.pets1.app.serviceImpl;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.pets1.app.domain.ClinicaVo;
 import com.pets1.app.repository.IClinica;

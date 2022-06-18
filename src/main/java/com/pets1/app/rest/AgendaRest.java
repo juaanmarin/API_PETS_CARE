@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import org.apache.tomcat.util.http.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,8 +25,6 @@ import com.pets1.app.service.IAgendaService;
 @RequestMapping("/api")
 public class AgendaRest {
 	
-	private static final String ENTITY_NAME="AgendaVo";
-	
 	@Autowired
 	private IAgendaService agendaService;
 	
@@ -37,7 +34,7 @@ public class AgendaRest {
 	}
 	
 	@GetMapping("/agenda/{codigo}")
-	public ResponseEntity<Optional<AgendaVo>> buscarAgendaID(@PathVariable Long codigo){
+	public ResponseEntity<Optional<AgendaVo>> buscarAgendaId(@PathVariable Long codigo){
 		Optional<AgendaVo> agendaId=agendaService.buscarAgendaId(codigo);	
 		return ResponseEntity.ok().body(agendaId);
 	}
@@ -50,8 +47,8 @@ public class AgendaRest {
 			return new ResponseEntity<Map<String, Object>> (response, HttpStatus.NOT_FOUND);
 		}
 		
-		AgendaVo MiAgenda=agendaService.guardarAgenda(agendaVo);
-		response.put("guardado con exito", MiAgenda);
+		AgendaVo miAgenda=agendaService.guardarAgenda(agendaVo);
+		response.put("guardado con exito", miAgenda);
 		return new ResponseEntity<Map<String, Object>> (response, HttpStatus.CREATED);
 	}
 	

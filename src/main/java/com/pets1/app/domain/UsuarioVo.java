@@ -5,7 +5,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -39,7 +38,7 @@ public class UsuarioVo {
 	
     @OneToMany(mappedBy = "duenioMasCo", cascade = {CascadeType.PERSIST, CascadeType.ALL})
 	@JsonIgnoreProperties(value = {"usuarios", "hibernateLazyInitializer","handler"})
-	private List<MascotaVo> listaMascotas;
+	private List<MascotaVo> listaMascotas ;
 		
 	public UsuarioVo() {
 		
