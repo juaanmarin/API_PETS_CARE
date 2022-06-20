@@ -42,7 +42,7 @@ public class ClinicaRest {
 	@PostMapping("/clinica")
 	public ResponseEntity<?> guardarClinica(@RequestBody ClinicaVo clinicaVo)throws URISyntaxException{
 		Map<String, Object> response=new HashMap<>();
-		if(clinicaVo.getNit() != null) {
+		if(clinicaVo.getNit() == null) {
 			response.put("error", "ya existe una clinica con este nit");
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
 		}
@@ -65,7 +65,8 @@ public class ClinicaRest {
 		miClinicaVo.setNombre(clinicaVo.getNombre());
 		miClinicaVo.setDireccion(clinicaVo.getDireccion());
 		miClinicaVo.setHorario_atencion(clinicaVo.getHorario_atencion());
-		miClinicaVo.setRol(miClinicaVo.getRol());
+		miClinicaVo.setRol(clinicaVo.getRol());
+		miClinicaVo.setVeterinarioCod(clinicaVo.getVeterinarioCod());
 		
 		miClinicaVo=clinicaService.guardarClinica(miClinicaVo);
 		response.put("actualizado con exto", miClinicaVo);

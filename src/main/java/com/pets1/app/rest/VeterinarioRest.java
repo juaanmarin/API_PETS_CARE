@@ -42,7 +42,7 @@ public class VeterinarioRest {
 	@PostMapping("/veterinario")
 	public ResponseEntity<?> guardarVeterinario(@RequestBody VeterinarioVo veterinarioVo)throws URISyntaxException{	
 		Map<String,Object>response = new HashMap<>();
-		if(veterinarioVo.getDocumento() != null) {
+		if(veterinarioVo.getDocumento() == null) {
 			response.put("error", "ya existe esta agenda con este id");
 			return new ResponseEntity<Map<String, Object>> (response, HttpStatus.NOT_FOUND);
 		}
