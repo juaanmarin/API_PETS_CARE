@@ -28,6 +28,8 @@ public class ClinicaVo {
 	@Column(name = "rol_cv", nullable = false)
 	private int rol;
 	
+	
+	
 	@ManyToOne
 	@JoinColumn(name = "documentoVt", referencedColumnName = "documento_vt")
 	@JsonIgnoreProperties(value = {"documento"}, allowSetters=true)

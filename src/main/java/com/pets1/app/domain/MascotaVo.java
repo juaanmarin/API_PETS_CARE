@@ -10,7 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -46,17 +46,16 @@ public class MascotaVo {
 	@JsonIgnoreProperties(value = {"documentoUs"}, allowSetters=true)
 	private UsuarioVo duenioMasCo;
 	
-	@OneToMany(mappedBy = "mascotaCod", cascade = {CascadeType.PERSIST,CascadeType.ALL})
-	@JsonIgnoreProperties(value = {"mascotaCod"}, allowSetters=true)
-	private List<HistoriaClinicaVo> listaHistoriasCl;
+//	@OneToOne(mappedBy = "mascotaCod", cascade = {CascadeType.PERSIST,CascadeType.ALL})
+//	@JsonIgnoreProperties(value = {"mascotaCod"}, allowSetters=true)
+//	private List<HistoriaClinicaVo> listaHistoriasCl;
 	
 	public MascotaVo () {
 		
 	}
 
 	public MascotaVo(Long codigo, String nombre, String raza, String color, double peso, String discapacidad,
-			String tipoAnimal, List<HistoriaClinicaVo> listaHistoriasCl,
-			UsuarioVo duenioMasCo) {
+			String tipoAnimal, UsuarioVo duenioMasCo) {
 		super();
 		this.codigo = codigo;
 		this.nombre = nombre;
@@ -65,8 +64,8 @@ public class MascotaVo {
 		this.peso = peso;
 		this.discapacidad = discapacidad;
 		this.tipoAnimal = tipoAnimal;
-		this.listaHistoriasCl = listaHistoriasCl;
 		this.duenioMasCo = duenioMasCo;
+	
 	}
 
 	public Long getCodigo() {
@@ -125,14 +124,6 @@ public class MascotaVo {
 		this.tipoAnimal = tipoAnimal;
 	}
 
-	public List<HistoriaClinicaVo> getListaHistoriasCl() {
-		return listaHistoriasCl;
-	}
-
-	public void setListaHistoriasCl(List<HistoriaClinicaVo> listaHistoriasCl) {
-		this.listaHistoriasCl = listaHistoriasCl;
-	}
-
 	public UsuarioVo getDuenioMasCo() {
 		return duenioMasCo;
 	}
@@ -140,4 +131,5 @@ public class MascotaVo {
 	public void setDuenioMasCo(UsuarioVo duenioMasCo) {
 		this.duenioMasCo = duenioMasCo;
 	}
+
 }

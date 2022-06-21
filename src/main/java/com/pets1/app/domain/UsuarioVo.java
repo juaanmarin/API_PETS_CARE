@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -40,16 +41,16 @@ public class UsuarioVo {
 	@JsonIgnoreProperties(value = {"duenioMasCo"}, allowSetters=true)
 	private List<MascotaVo> listaMascotas;
 	
-	@OneToMany(mappedBy = "agendaUs", cascade = {CascadeType.PERSIST, CascadeType.ALL})
-	@JsonIgnoreProperties(value = {"agendaUs"}, allowSetters=true)
-	private List<AgendaVo> listaAgendas;
+//	@OneToOne(mappedBy = "agendaUs", cascade = {CascadeType.PERSIST, CascadeType.ALL})
+//	@JsonIgnoreProperties(value = {"agendaUs"}, allowSetters=true)
+//	private List<AgendaVo> listaAgendas;
 	
 	public UsuarioVo() {
 		
 	}
 
 	public UsuarioVo(Long documentoUs, String nombreUs, String apellidoUs, String telefonoUs, String correoUs,
-			String passwordUs, int rolUs, List<MascotaVo> listaMascotas, List<AgendaVo> listaAgendas) {
+			String passwordUs, int rolUs, List<MascotaVo> listaMascotas) {
 		super();
 		this.documentoUs = documentoUs;
 		this.nombreUs = nombreUs;
@@ -59,7 +60,7 @@ public class UsuarioVo {
 		this.passwordUs = passwordUs;
 		this.rolUs = rolUs;
 		this.listaMascotas = listaMascotas;
-		this.listaAgendas = listaAgendas;
+		
 	}
 
 
@@ -128,11 +129,5 @@ public class UsuarioVo {
 		this.listaMascotas = listaMascotas;
 	}
 
-	public List<AgendaVo> getListaAgendas() {
-		return listaAgendas;
-	}
 
-	public void setListaAgendas(List<AgendaVo> listaAgendas) {
-		this.listaAgendas = listaAgendas;
-	}
 }

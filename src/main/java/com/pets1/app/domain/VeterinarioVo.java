@@ -11,6 +11,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+
 @Entity
 @Table(name = "veterinario")
 public class VeterinarioVo {
@@ -33,23 +34,24 @@ public class VeterinarioVo {
 	@Column(name = "especialidad_vt", nullable = false) 
 	private String especialidad ;
 
-	@Column(name = "password_vt", nullable = false) 
+	@Column(name = "password_vt", nullable = false)
 	private String password ;
 	
 	@OneToMany(mappedBy = "veterinarioCod", cascade = {CascadeType.PERSIST, CascadeType.ALL})
-	@JsonIgnoreProperties(value = {"veterinario","hibernateLazyInitializer","handler"})
+	@JsonIgnoreProperties(value = {"hibernateLazyInitializer","handler"})
 	private List<ClinicaVo> listaClinica;
 	
-	@OneToMany(mappedBy = "veterinarioHisCli", cascade = {CascadeType.PERSIST, CascadeType.ALL})
-	@JsonIgnoreProperties(value = {"veterinario","hibernateLazyInitializer","handler"})
-	private List<HistoriaClinicaVo> listaHistoriaCli;	
+	@OneToMany(mappedBy = "veterinarioAg", cascade = {CascadeType.PERSIST, CascadeType.ALL})
+	@JsonIgnoreProperties(value = {"veterinarioAg"}, allowSetters=true)
+	private List<AgendaVo> listaAgenda;
+	
+		
 	public VeterinarioVo () {
 		
 	}
 
 	public VeterinarioVo(long documento, String nombre, String apellidos, String telefono, String correo,
-			String especialidad, String password, List<ClinicaVo> listaClinica,
-			List<HistoriaClinicaVo> listaHistoriaCli) {
+			String especialidad, String password, List<ClinicaVo> listaClinica, List<AgendaVo> listaAgenda) {
 		super();
 		this.documento = documento;
 		this.nombre = nombre;
@@ -59,7 +61,7 @@ public class VeterinarioVo {
 		this.especialidad = especialidad;
 		this.password = password;
 		this.listaClinica = listaClinica;
-		this.listaHistoriaCli = listaHistoriaCli;
+		this.listaAgenda = listaAgenda;
 	}
 
 	public Long getDocumento() {
@@ -126,11 +128,13 @@ public class VeterinarioVo {
 		this.listaClinica = listaClinica;
 	}
 
-	public List<HistoriaClinicaVo> getListaHistoriaCli() {
-		return listaHistoriaCli;
+	public List<AgendaVo> getListaAgenda() {
+		return listaAgenda;
 	}
 
-	public void setListaHistoriaCli(List<HistoriaClinicaVo> listaHistoriaCli) {
-		this.listaHistoriaCli = listaHistoriaCli;
+	public void setListaAgenda(List<AgendaVo> listaAgenda) {
+		this.listaAgenda = listaAgenda;
 	}
+	
+
 }

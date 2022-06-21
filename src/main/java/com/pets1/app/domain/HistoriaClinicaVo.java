@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -25,28 +25,22 @@ public class HistoriaClinicaVo {
 	@Column(name = "motivoConsulta_hc", nullable = false, length = 200)
 	private String motivoConsulta;
 		
-	@ManyToOne
-	@JoinColumn(name = "codMascota", referencedColumnName = "codigo_mc")
+	@OneToOne
+	@JoinColumn(name = "codmascota", referencedColumnName = "codigo_mc")
 	@JsonIgnoreProperties(value = {"codigo"}, allowSetters=true)
 	private MascotaVo mascotaCod;
-	
-	@ManyToOne
-	@JoinColumn(name = "documentoVt", referencedColumnName = "documento_vt")
-	@JsonIgnoreProperties(value = {"documento"}, allowSetters=true)
-	private VeterinarioVo veterinarioHisCli;
 	
 	public HistoriaClinicaVo () {
 		
 	}
 
 	public HistoriaClinicaVo(Long codigo, String fecha, String motivoConsulta,
-			MascotaVo mascotaCod, VeterinarioVo veterinarioHisCli) {
+			MascotaVo mascotaCod) {
 		super();
 		this.codigo = codigo;
 		this.fecha = fecha;
 		this.motivoConsulta = motivoConsulta;
 		this.mascotaCod = mascotaCod;
-		this.veterinarioHisCli = veterinarioHisCli;
 	}
 
 	public Long getCodigo() {
@@ -79,14 +73,6 @@ public class HistoriaClinicaVo {
 
 	public void setMascotaCod(MascotaVo mascotaCod) {
 		this.mascotaCod = mascotaCod;
-	}
-
-	public VeterinarioVo getVeterinarioHisCli() {
-		return veterinarioHisCli;
-	}
-
-	public void setVeterinarioHisCli(VeterinarioVo veterinarioHisCli) {
-		this.veterinarioHisCli = veterinarioHisCli;
 	}
 
 }

@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -25,7 +26,7 @@ public class AgendaVo {
 	@Column(name = "hora_agen", nullable = false)
 	private String hora;
 	
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name = "documento_us", referencedColumnName = "documento_usu")
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private UsuarioVo agendaUs;
